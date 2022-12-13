@@ -7,7 +7,7 @@ wb = load_workbook('library.xlsx')
 ws = wb.active
 wb.save('library.xlsx')
 #-------------------------------------------------------------------------------
-class book:
+class book:                                                                    #creating book class and defining methods
     def __init__(self, srno , title, ISBN , author , code ):
         self.title = title
         self.author = author
@@ -17,36 +17,32 @@ class book:
         self.code = code
 
     
-    def borrow(self):
+    def borrow(self):                                                          # method to borrow book
         self.status = "Borrowed"
         print(str(self.title) + ' Is ' + str(self.status) )
 
     
-    def returnn(self):
+    def returnn(self):                                                         # method to return book
         self.status = "Available"
         print(str(self.title) + ' Is ' + str(self.status) )
         
     
-    def reserve(self):
+    def reserve(self):                                                         # method to reserve book
         self.status = "Reserved"
         print(str(self.title) + ' Is ' + str(self.status) )
 
-    @classmethod
-    def library(cls):
-        pass
-        
-        
-class shelf:
+       
+class shelf:                                                                   # creating shelf class 
     def __init__(self, books_arr   ):
         self.books_arr = books_arr
         
         
     
-    def bcount(self):
+    def bcount(self):                                                          #method to get count of books in this shelf
         self.bcount = str(len(self.books_arr))
 
     
-    def catalog(self):
+    def catalog(self):                                                          #method to view catalog of shelf
         i = 1
         print("Sr.No.  -   Title  -  code ")
         for book in self.books_arr:
@@ -55,7 +51,7 @@ class shelf:
 
             
     
-    def add_books(self , book):
+    def add_books(self , book):                                                #method to add book
         if book not in books_arr:
             self.books_arr.append(book)
             print(book + "Added To Shelf")
@@ -64,7 +60,7 @@ class shelf:
             
             
     
-    def remove_books(self, bok):
+    def remove_books(self, bok):                                                #method to remove book
         if bok in books_arr:
             self.books_arr.remove(bok)
             print(bok + "Removed From Shelf")
@@ -74,8 +70,8 @@ class shelf:
     #def populate_book(self):
         #populate(args)
 #-------------------------------------------------------------------------------
-total_rows = ws.max_row
-total_column = ws.max_column 
+total_rows = ws.max_row                                                       #this block of code creates dynamic variables depending on the number of records from
+total_column = ws.max_column                                                  # the excel sheet and simultaneously creating class instances.
 var_for_book = []
 row_tuple = []
 books_array = []
@@ -102,7 +98,7 @@ for j in range (1 , total_rows ):
 
 book_arr = shelf(books_array) 
 #-------------------------------------------------------------------------------
-
+                                                                                 # Using while loop for cli 
 cont = 'y' 
 cont_2 = 'y'
 cont_3 = 'y'
